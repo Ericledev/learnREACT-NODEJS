@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.scss';
+import MyComponent from '../components/myComponent'; //or { MyComponent, MyComponent1 }
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -17,7 +18,9 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+
         </a>
+        <MyComponent></MyComponent>
       </header>
     </div>
   );
