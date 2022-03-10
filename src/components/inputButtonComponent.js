@@ -4,7 +4,7 @@ export class InputComponent extends React.Component {
     state = { name: "NguyetTuan", age: 40 }         //state is global object parameter
     handleOnChangeName = (event) => {
         this.setState({                            //this.setState({,}) is function of API. it will 
-            name: event.target.value               // merge "state"
+            name1: event.target.value               // merge "state"
         })                                         // DO NOT DO this.state.name = event.target.value
     }
     onClickButton = () => {
