@@ -3,13 +3,12 @@ import React from 'react';
 import ChildComponent from './childComponent';
 import FunctionChildComponent from './functionComponent';
 import ConditionOutput from './conditionOutput'
-
+import AddComponent from './addComponent';
 
 
 class Mycomponent extends React.Component {
     state = {
-        fname: "",
-        lname: "",
+        
         arrResume: [
             { id: '123', add: 'Ha Noi', age: '40' },
             { id: '456', add: 'Thanh Hoa', age: '7' },
@@ -17,44 +16,43 @@ class Mycomponent extends React.Component {
         ]
     }
 
-    handleFirstName = (event) => {
-        this.setState({ fname: event.target.value })
+   addNewArrow = (newArrow) =>{
+        // //////First way to add new data into State /////////////////
+        // this.state.arrResume.push(newArrow)
+        // this.setState({arrResume: this.state.arrResume })
+
+        ///////// Second way to ad new data into state //////////////////
+        this.setState({arrResume:[...this.state.arrResume,newArrow]})    
+       
+        console.log("Check data from Child to parent: ", newArrow)
+        console.log("Check add new data at tempArray: ", this.state.arrResume)
     }
-    handleLastName = (event) => {
-        this.setState({ lname: event.target.value })
+
+    deleteArrow = (id)=>{
+        // let temp=this.state.arrResume
+        // temp= temp.filter(item=>item.id!=id.id)
+        // this.setState({arrResume: temp})
+        this.setState({arrResume:this.state.arrResume.filter(item=>item.id!==id.id) })
+       
     }
-    handleSubmit = (event) => {
-        event.preventDefault()
-        console.log("Get full name into state: ", this.state)
-    }
+    
 
     render() {
         return (
             <>
-                <form>
-                    <label htmlFor='fname'>First name:</label><br />
-                    <input type="text" value={this.state.fname} id="fname"
-                        onChange={(event) => this.handleFirstName(event)}
-                    /><br />
-                    <label htmlFor="lname">Last name:</label><br />
-                    <input type="text" value={this.state.lname} id='lname'
-                        onChange={(event) => this.handleLastName(event)}
-                    /><br />
-                    <input type="submit" value="Submit"                 /////type="submit" will reload page,
-                        onClick={(event) => this.handleSubmit(event)}   /// we use event.preventDefault() to unload page
-                        onKeyPress={(event) => this.handleSubmit(event)}
-                    />
-
-                </form>
+                <AddComponent addNewArrow = {this.addNewArrow}/>
+                {/* <ConditionOutput deleteArrow={this.deleteArrow}/> */}
                 {/* <ChildComponent
                     propFName={this.state.fname}
-                    propLName={this.state.lname}
+                    propLName={this.state.ln    ame}
                     propResume={this.state.arrResume}
                 />
                 <FunctionChildComponent propResume={this.state.arrResume} /> */}
-                <ConditionOutput propResume={this.state.arrResume} />
+                <ConditionOutput propResume={this.state.arrResume}
+                                 deleteArrow={this.deleteArrow}
+                />
             </>
-        )
+        )   
     }
 }
 export default Mycomponent
