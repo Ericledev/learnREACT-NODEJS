@@ -27,7 +27,6 @@ class AddComponent extends React.Component{
         this.state.age=''
     }
     render(){
-       //let {addNewArrow}=this.props
         return(
             <form>
                     

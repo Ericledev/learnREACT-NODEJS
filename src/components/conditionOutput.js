@@ -12,8 +12,10 @@ class ConditionOutput extends React.Component {
     }
     
     handleDelete = (id) => {
+       if (window.confirm('Are you sure you wanna delete: ' + id.add))
            this.props.deleteArrow(id)
-        }
+        
+    }
     render() {
         let { propResume } = this.props
         let { showAge } = this.state

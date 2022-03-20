@@ -1,28 +1,68 @@
 import logo from './logo.svg';
 import './App.scss';
 import MyComponent from '../components/myComponent'; //or { MyComponent, MyComponent1 }
+import ListTodo from './Todos/ListTodo';
+
+import toastify from 'toastify-js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Home from './Example/Home';
+import Nav from './Nav/Nav';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
+
+import ListUsers from './User/ListUsers';
+import DetailUser from './User/DetailUser';
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {/* Edit <code>src/App.js</code> and save to reload. */}
-          Hello Tuan, welcome to React for Beginer
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <Router>
+      <div className="App">
 
-        </a>
-        <MyComponent />
-      </header>
-    </div>
+        <header className="App-header">
+
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/Todos">
+              <ListTodo />
+            </Route>
+            <Route path="/MyComponent">
+              <MyComponent />
+            </Route>
+            <Route path="/ListUsers" exact>
+              <ListUsers />
+            </Route>
+            <Route path='/ListUsers/:id'>
+              <DetailUser />
+            </Route>
+          </Switch>
+        </header>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
+
+      </div>
+    </Router>
   );
 }
 
